@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="256" height="256" role="img" aria-labelledby="title">
+  <title>Events</title>
+  <defs>
+    <style> .stroke{fill:none;stroke:#2e8b57;stroke-width:3;stroke-linecap:round;stroke-linejoin:round} .accent{fill:#2e8b57} .bg{fill:#e8f6ef}</style>
+  </defs>
+  <rect x="6" y="10" width="52" height="44" rx="4" class="stroke"/>
+  <rect x="8" y="16" width="48" height="32" rx="3" class="bg"/>
+
+  <!-- top rings / calendar pins -->
+  <line x1="18" y1="6" x2="18" y2="14" class="stroke"/>
+  <line x1="46" y1="6" x2="46" y2="14" class="stroke"/>
+
+  <!-- event block -->
+  <rect x="12" y="22" width="12" height="10" rx="2" class="accent"/>
+  <text x="36" y="30" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#2e8b57">12</text>
+</svg>

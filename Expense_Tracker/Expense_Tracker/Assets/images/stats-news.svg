@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="256" height="256" role="img" aria-labelledby="title">
+  <title>News</title>
+  <defs>
+    <style> .primary{fill:#2e8b57} .muted{fill:#6b6b6b} .paper{fill:#f7fbf8;stroke:#dfeee4;stroke-width:1.5}</style>
+  </defs>
+  <rect x="6" y="10" width="52" height="40" rx="3" class="paper"/>
+  <rect x="10" y="14" width="12" height="12" rx="2" class="primary"/>
+  <rect x="26" y="18" width="20" height="2" class="muted"/>
+  <rect x="26" y="23" width="24" height="2" class="muted"/>
+  <rect x="10" y="28" width="40" height="2" class="muted"/>
+  <rect x="10" y="33" width="28" height="2" class="muted"/>
+  <rect x="10" y="38" width="20" height="2" class="muted"/>
+</svg>

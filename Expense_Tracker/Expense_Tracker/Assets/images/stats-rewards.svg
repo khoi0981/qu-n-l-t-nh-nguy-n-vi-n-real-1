@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="256" height="256" role="img" aria-labelledby="title">
+  <title>Rewards</title>
+  <defs>
+    <style> .gold{fill:#ffc107} .green{fill:#2e8b57} .shine{fill:#fff;opacity:0.14}</style>
+  </defs>
+  <rect x="10" y="22" width="44" height="26" rx="3" class="gold"/>
+  <rect x="18" y="14" width="28" height="12" rx="3" class="green"/>
+  <path d="M32 14v34" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+  <path d="M32 14c4-6 10-6 10-6s-6 6-10 6z" class="shine"/>
+  <path d="M22 14c-4-6-10-6-10-6s6 6 10 6z" class="shine"/>
+  <!-- small ribbon tail -->
+  <polygon points="24,38 20,50 28,46" fill="#c88700" opacity="0.16"/>
+</svg>

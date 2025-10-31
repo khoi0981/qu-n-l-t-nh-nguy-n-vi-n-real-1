@@ -1,0 +1,207 @@
+<?php
+session_start();
+require_once __DIR__ . '/../src/config/db.php';
+
+// fetch latest articles
+$stmt = $pdo->query("SELECT id, title, excerpt, image, created_at FROM news ORDER BY created_at DESC LIMIT 8");
+$articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>GreenNews - Environmental Updates</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Fonts & Icons -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries & CSS (server-absolute paths) -->
+        <link href="/Expense_tracker-main/Expense_Tracker/news_web/lib/animate/animate.min.css" rel="stylesheet">
+        <link href="/Expense_tracker-main/Expense_Tracker/news_web/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+        <link href="/Expense_tracker-main/Expense_Tracker/news_web/css_news/bootstrap.min.css" rel="stylesheet">
+        <link href="/Expense_tracker-main/Expense_Tracker/news_web/css_news/style.css" rel="stylesheet">
+
+        <style>
+            /* small overrides to match green theme */
+            :root { --brand: #2e8b57; --brand-dark: #246b45; }
+            .text-primary, .btn-primary { background-color: var(--brand); border-color: var(--brand); color: #fff; }
+            .btn-primary:hover { background-color: var(--brand-dark); border-color: var(--brand-dark); }
+        </style>
+    </head>
+
+    <body>
+
+        <!-- Header (copied from index.html) -->
+        <div class="container-fluid sticky-top px-0">
+            <div class="container-fluid topbar bg-dark d-none d-lg-block">
+                <div class="container px-0">
+                    <div class="topbar-top d-flex justify-content-between flex-lg-wrap">
+                        <div class="top-info flex-grow-0">
+                            <span class="rounded-circle btn-sm-square bg-primary me-2">
+                                <i class="fas fa-bolt text-white"></i>
+                            </span>
+                            <div class="pe-2 me-3 border-end border-white d-flex align-items-center">
+                                <p class="mb-0 text-white fs-6 fw-normal">Trending</p>
+                            </div>
+                            <div class="overflow-hidden" style="width: 735px;">
+                                <div id="note" class="ps-2">
+                                    <img src="/Expense_tracker-main/Expense_Tracker/news_web/img/features-fashion.jpg" class="img-fluid rounded-circle border border-3 border-primary me-2" style="width: 30px; height: 30px;" alt="">
+                                    <a href="#"><p class="text-white mb-0 link-hover">Community reforestation drive this weekend — join local volunteers.</p></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="top-link flex-lg-wrap">
+                            <i class="fas fa-calendar-alt text-white border-end border-secondary pe-2 me-2"> <span class="text-body"><?php echo date('l, M d, Y'); ?></span></i>
+                            <div class="d-flex icon">
+                                <p class="mb-0 text-white me-2">Follow Us:</p>
+                                <a href="" class="me-2"><i class="fab fa-facebook-f text-body link-hover"></i></a>
+                                <a href="" class="me-2"><i class="fab fa-twitter text-body link-hover"></i></a>
+                                <a href="" class="me-2"><i class="fab fa-instagram text-body link-hover"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-fluid bg-light">
+                <div class="container px-0">
+                    <nav class="navbar navbar-light navbar-expand-xl">
+                        <a href="/Expense_tracker-main/Expense_Tracker/news_web/index.php" class="navbar-brand mt-3">
+                            <p class="text-primary display-6 mb-2" style="line-height: 0;">GreenNews</p>
+                            <small class="text-body fw-normal" style="letter-spacing: 12px;">Environment</small>
+                        </a>
+                        <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                            <span class="fa fa-bars text-primary"></span>
+                        </button>
+                        <div class="collapse navbar-collapse bg-light py-3" id="navbarCollapse">
+                            <div class="navbar-nav mx-auto border-top">
+                                <a href="/Expense_tracker-main/Expense_Tracker/news_web/index.php" class="nav-item nav-link active">Home</a>
+                                <a href="/Expense_tracker-main/Expense_Tracker/news_web/detail-page.php" class="nav-item nav-link">Stories</a>
+                                <a href="/Expense_tracker-main/Expense_Tracker/news_web/events.php" class="nav-item nav-link">Events</a>
+                                <a href="/Expense_tracker-main/Expense_Tracker/news_web/volunteer.php" class="nav-item nav-link">Volunteer</a>
+                                <a href="/Expense_tracker-main/Expense_Tracker/news_web/contact.php" class="nav-item nav-link">Contact</a>
+                            </div>
+                            <div class="d-flex flex-nowrap border-top pt-3 pt-xl-0">
+                                <div class="d-flex">
+                                    <img src="/Expense_tracker-main/Expense_Tracker/news_web/img/weather-icon.png" class="img-fluid w-100 me-2" alt="">
+                                    <div class="d-flex align-items-center">
+                                        <strong class="fs-4 text-secondary">27°C</strong>
+                                        <div class="d-flex flex-column ms-2" style="width: 150px;">
+                                            <span class="text-body">HANOI, VN</span>
+                                            <small><?php echo date('D. d M Y'); ?></small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn-search btn border border-primary btn-md-square rounded-circle bg-white my-auto" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fas fa-search text-primary"></i></button>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- Header End -->
+
+
+        <!-- Search Modal -->
+        <div class="modal fade" id="searchModal" tabindex="-1">
+            <div class="modal-dialog modal-fullscreen">
+                <div class="modal-content rounded-0">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Search GreenNews</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body d-flex align-items-center">
+                        <div class="input-group w-75 mx-auto d-flex">
+                            <input type="search" class="form-control p-3" placeholder="Search environmental topics">
+                            <span class="input-group-text p-3"><i class="fa fa-search"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Search Modal End -->
+
+
+        <!-- Main content -->
+        <main class="container-fluid py-4">
+            <div class="container py-4">
+                <div class="row g-4">
+                    <div class="col-lg-8">
+                        <?php if (!empty($articles)): ?>
+                            <?php foreach ($articles as $a): ?>
+                                <article class="mb-4 bg-light rounded p-3">
+                                    <div class="row g-3 align-items-center">
+                                        <div class="col-md-4">
+                                            <img src="<?php echo '/Expense_tracker-main/Expense_Tracker/news_web/img/' . htmlspecialchars($a['image']); ?>" class="img-fluid rounded" alt="">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <h3><a class="link-hover" href="/Expense_tracker-main/Expense_Tracker/news_web/detail-page.php?id=<?php echo $a['id']; ?>"><?php echo htmlspecialchars($a['title']); ?></a></h3>
+                                            <p class="text-muted small"><?php echo date('M d, Y', strtotime($a['created_at'])); ?></p>
+                                            <p><?php echo htmlspecialchars($a['excerpt']); ?></p>
+                                        </div>
+                                    </div>
+                                </article>
+                            <?php endforeach; ?>
+                        <?php else: ?>
+                            <p>No articles found.</p>
+                        <?php endif; ?>
+                    </div>
+
+                    <aside class="col-lg-4">
+                        <div class="p-3 rounded bg-light mb-4">
+                            <h5 class="mb-3">Upcoming Events</h5>
+                            <?php
+                            $ev = $pdo->query("SELECT title, event_date FROM events ORDER BY event_date ASC LIMIT 5")->fetchAll(PDO::FETCH_ASSOC);
+                            if ($ev):
+                                foreach ($ev as $e): ?>
+                                    <div class="mb-2">
+                                        <strong><?php echo htmlspecialchars($e['title']); ?></strong>
+                                        <div class="small text-muted"><?php echo date('M d, Y', strtotime($e['event_date'])); ?></div>
+                                </div>
+                            <?php endforeach;
+                            else: ?>
+                                <div>No upcoming events.</div>
+                            <?php endif; ?>
+                        </div>
+
+                        <div class="p-3 rounded bg-light">
+                            <h5 class="mb-3">Quick Links</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="/Expense_tracker-main/Expense_Tracker/news_web/volunteer.php" class="link-hover">Volunteer</a></li>
+                                <li><a href="/Expense_tracker-main/Expense_Tracker/news_web/events.php" class="link-hover">Events</a></li>
+                                <li><a href="/Expense_tracker-main/Expense_Tracker/news_web/contact.php" class="link-hover">Contact</a></li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </main>
+        <!-- Main content End -->
+
+
+        <!-- Footer (kept simple) -->
+        <footer class="container-fluid bg-dark text-light py-4">
+            <div class="container">
+                <div class="d-flex justify-content-between">
+                    <div>© <?php echo date('Y'); ?> GreenNews</div>
+                    <div>Designed for Environmental Projects</div>
+                </div>
+            </div>
+        </footer>
+        <!-- Footer End -->
+
+
+        <!-- Scripts (server-absolute paths) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="/Expense_tracker-main/Expense_Tracker/news_web/js/bootstrap.bundle.min.js"></script>
+        <script src="/Expense_tracker-main/Expense_Tracker/news_web/lib/easing/easing.min.js"></script>
+        <script src="/Expense_tracker-main/Expense_Tracker/news_web/lib/waypoints/waypoints.min.js"></script>
+        <script src="/Expense_tracker-main/Expense_Tracker/news_web/lib/owlcarousel/owl.carousel.min.js"></script>
+        <script src="/Expense_tracker-main/Expense_Tracker/news_web/js/main.js"></script>
+    </body>
+
+</html>
